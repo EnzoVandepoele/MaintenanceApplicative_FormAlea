@@ -1,0 +1,16 @@
+{
+    "name": "td1/enzo",
+    "description": "TD1 Maintenance Applicative",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Enzo"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^12.5"
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
