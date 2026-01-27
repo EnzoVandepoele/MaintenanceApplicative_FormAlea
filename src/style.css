@@ -235,3 +235,103 @@ button:active {
   animation: rainbowText 3s ease infinite;
   font-weight: bold;
 }
+/* Météorites */
+.meteorites-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.meteorite {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: radial-gradient(circle, #ffff00, #ff7f00);
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
+  animation: meteoriteFall linear forwards;
+}
+
+@keyframes meteoriteFall {
+  0% {
+    opacity: 1;
+    transform: translateY(0) translateX(0);
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100vh) translateX(100px);
+  }
+}
+
+.explosion {
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  pointer-events: none;
+}
+
+.explosion-particle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  filter: drop-shadow(0 0 4px currentColor);
+}
+
+@keyframes particleExplosion {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+    filter: drop-shadow(0 0 12px currentColor) brightness(2);
+  }
+  50% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 8px currentColor) brightness(1.5);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0);
+    filter: drop-shadow(0 0 0px currentColor);
+  }
+}
+
+@keyframes shockwave {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.explosion-shockwave {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 150, 0, 0.8);
+  border-radius: 50%;
+  left: -20px;
+  top: -20px;
+  animation: shockwave 0.6s ease-out forwards;
+  pointer-events: none;
+}
+
+body {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 10;
+}

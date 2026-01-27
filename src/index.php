@@ -22,6 +22,7 @@ try {
 </head>
 
 <body>
+    <div class="meteorites-container" id="meteoritesContainer"></div>
     <div class="container">
         <div class="header">
             <h1>Maintenance Applicative</h1>
@@ -30,6 +31,7 @@ try {
             <p>Liste des développeurs :</p>
             <ul>
                 <li>Enzo VANDEPOELE</li>
+                <li>Mathieu DUCROT (le créateur du front)</li>
             </ul>
 
             <p>Page de tirage aléatoire !</p>
@@ -55,11 +57,11 @@ try {
             }
             ?>
 
-            <form method="post">
+            <form method="post" id="mainForm">
                 <?php for ($i = 1; $i <= 10; $i++): ?>
                     <input type="text" name="input<?php echo $i; ?>" placeholder="Champ <?php echo $i; ?>" value="<?php echo htmlspecialchars($_POST["input$i"] ?? ''); ?>"><br><br>
                 <?php endfor; ?>
-                <button type="submit">Tirer au sort</button>
+                <button type="submit" id="submitBtn">Tirer au sort</button>
             </form>
 
             <?php if ($result): ?>
@@ -67,6 +69,98 @@ try {
             <?php endif; ?>
         </div>
     </div>
+
+    <script>
+        const container = document.getElementById('meteoritesContainer');
+        const colors = ['#ffff00', '#ff7f00', '#ff0000', '#ffcc00', '#ff4500'];
+
+        // Troll du bouton
+        const submitBtn = document.getElementById('submitBtn');
+        const form = document.getElementById('mainForm');
+        let clickCount = 0;
+
+        submitBtn.addEventListener('click', (e) => {
+            clickCount++;
+
+            if (clickCount < 3) {
+                e.preventDefault();
+                // Déplacer le bouton aléatoirement
+                const randomX = Math.random() * (window.innerWidth - 150);
+                const randomY = Math.random() * (window.innerHeight - 50);
+
+                submitBtn.style.position = 'fixed';
+                submitBtn.style.left = randomX + 'px';
+                submitBtn.style.top = randomY + 'px';
+                submitBtn.style.zIndex = '100';
+            }
+            // Au 3e clic, on laisse le formulaire se soumettre naturellement
+        });
+
+        function createMeteor() {
+            const meteor = document.createElement('div');
+            meteor.className = 'meteorite';
+            const startX = Math.random() * window.innerWidth;
+            const duration = 2 + Math.random() * 3;
+            const angle = -45 + Math.random() * 30;
+
+            meteor.style.left = startX + 'px';
+            meteor.style.top = '-10px';
+            meteor.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            meteor.style.animation = `meteoriteFall ${duration}s linear forwards`;
+
+            container.appendChild(meteor);
+
+            // Création d'une explosion à la fin
+            setTimeout(() => {
+                const rect = meteor.getBoundingClientRect();
+                createExplosion(rect.left, rect.top);
+                meteor.remove();
+            }, duration * 1000);
+        }
+
+        function createExplosion(x, y) {
+            const explosion = document.createElement('div');
+            explosion.className = 'explosion';
+            explosion.style.left = x + 'px';
+            explosion.style.top = y + 'px';
+            container.appendChild(explosion);
+
+            // Onde de choc
+            const shockwave = document.createElement('div');
+            shockwave.className = 'explosion-shockwave';
+            explosion.appendChild(shockwave);
+
+            const particleCount = 36;
+            const colors_exp = ['#ff0000', '#ff4500', '#ff7f00', '#ffff00', '#ffa500', '#ff6347'];
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'explosion-particle';
+
+                const angle = (i / particleCount) * Math.PI * 2 + (Math.random() - 0.5) * 0.3;
+                const velocity = 200 + Math.random() * 300;
+                const tx = Math.cos(angle) * velocity;
+                const ty = Math.sin(angle) * velocity;
+
+                particle.style.backgroundColor = colors_exp[Math.floor(Math.random() * colors_exp.length)];
+                particle.style.setProperty('--tx', tx + 'px');
+                particle.style.setProperty('--ty', ty + 'px');
+                particle.style.animation = `particleExplosion 1s ease-out forwards`;
+
+                explosion.appendChild(particle);
+            }
+
+            setTimeout(() => explosion.remove(), 1000);
+        }
+
+        // Lancer une météorite toutes les 0.5 à 2 secondes
+        setInterval(createMeteor, 500 + Math.random() * 1500);
+
+        // Créer quelques météorites au chargement
+        for (let i = 0; i < 3; i++) {
+            setTimeout(() => createMeteor(), i * 500);
+        }
+    </script>
 </body>
 
 </html>
