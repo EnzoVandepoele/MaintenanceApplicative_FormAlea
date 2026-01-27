@@ -1,4 +1,5 @@
 <?php
+session_start();
 $host = getenv("DB_HOST") ?: "db";
 $db   = getenv("DB_NAME") ?: "app";
 $user = getenv("DB_USER") ?: "app";
@@ -7,6 +8,39 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
 } catch (Exception $e) {
     echo "<p>Erreur: " . $e->getMessage() . "</p>";
+}
+
+// Traiter le formulaire AVANT d'envoyer le HTML
+$result = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $inputs = [];
+    for ($i = 1; $i <= 10; $i++) {
+        $value = trim($_POST["input$i"] ?? '');
+        if (!empty($value)) {
+            $inputs[] = $value;
+        }
+    }
+    if (!empty($inputs)) {
+        $randomIndex = array_rand($inputs);
+        $result = $inputs[$randomIndex];
+        $_SESSION['result'] = $result;
+        $pdo->prepare("INSERT INTO result.results VALUES (:resultat)")
+            ->execute(['resultat' => $result]);
+
+        // Redirection pour éviter la resoumission au refresh
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit();
+    } else {
+        $_SESSION['result'] = 'Aucun champ rempli.';
+        header("Location: " . $_SERVER['REQUEST_URI']);
+        exit();
+    }
+}
+
+// Récupérer le résultat de la session s'il existe
+if (isset($_SESSION['result'])) {
+    $result = $_SESSION['result'];
+    unset($_SESSION['result']); // Effacer après utilisation
 }
 ?>
 
@@ -35,27 +69,6 @@ try {
             </ul>
 
             <p>Page de tirage aléatoire !</p>
-
-            <?php
-            $result = '';
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $inputs = [];
-                for ($i = 1; $i <= 10; $i++) {
-                    $value = trim($_POST["input$i"] ?? '');
-                    if (!empty($value)) {
-                        $inputs[] = $value;
-                    }
-                }
-                if (!empty($inputs)) {
-                    $randomIndex = array_rand($inputs);
-                    $result = $inputs[$randomIndex];
-                    $pdo->prepare("INSERT INTO result.results VALUES (:resultat)")
-                        ->execute(['resultat' => $result]);
-                } else {
-                    $result = 'Aucun champ rempli.';
-                }
-            }
-            ?>
 
             <form method="post" id="mainForm">
                 <?php for ($i = 1; $i <= 10; $i++): ?>
@@ -153,12 +166,12 @@ try {
             setTimeout(() => explosion.remove(), 1000);
         }
 
-        // Lancer une météorite toutes les 0.5 à 2 secondes
-        setInterval(createMeteor, 500 + Math.random() * 1500);
+        // Lancer une météorite toutes les 0.2 à 0.8 secondes
+        setInterval(createMeteor, 200 + Math.random() * 600);
 
-        // Créer quelques météorites au chargement
-        for (let i = 0; i < 3; i++) {
-            setTimeout(() => createMeteor(), i * 500);
+        // Créer plusieurs météorites au chargement
+        for (let i = 0; i < 8; i++) {
+            setTimeout(() => createMeteor(), i * 150);
         }
     </script>
 </body>
