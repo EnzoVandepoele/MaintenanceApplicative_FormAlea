@@ -10,6 +10,9 @@ try {
     echo "<p>Erreur: " . $e->getMessage() . "</p>";
 }
 
+require_once __DIR__ . '/migrate.php';
+runMigrations($pdo);
+
 // Traiter le formulaire AVANT d'envoyer le HTML
 $result = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -24,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $randomIndex = array_rand($inputs);
         $result = $inputs[$randomIndex];
         $_SESSION['result'] = $result;
-        $pdo->prepare("INSERT INTO result.results VALUES (:resultat)")
+        $pdo->prepare("INSERT INTO results (resultat) VALUES (:resultat)")
             ->execute(['resultat' => $result]);
 
         // Redirection pour éviter la resoumission au refresh
@@ -66,6 +69,7 @@ if (isset($_SESSION['result'])) {
             <ul>
                 <li>Enzo VANDEPOELE</li>
                 <li>Mathieu DUCROT (le créateur du front)</li>
+                <li>Léo HENRIOT</li>
             </ul>
 
             <p>Page de tirage aléatoire !</p>
