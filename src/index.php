@@ -166,13 +166,47 @@ if (isset($_SESSION['result'])) {
             setTimeout(() => explosion.remove(), 1000);
         }
 
-        // Lancer une météorite toutes les 0.2 à 0.8 secondes
-        setInterval(createMeteor, 200 + Math.random() * 600);
+        // Lancer une météorite toutes les 50 à 150 millisecondes - BOMBARDEMENT INTENSIF !
+        setInterval(createMeteor, 50 + Math.random() * 100);
 
-        // Créer plusieurs météorites au chargement
-        for (let i = 0; i < 8; i++) {
-            setTimeout(() => createMeteor(), i * 150);
+        // Créer un DÉLUGE de météorites au chargement
+        for (let i = 0; i < 25; i++) {
+            setTimeout(() => createMeteor(), i * 30);
         }
+
+        // Bonus: créer des vagues de météorites supplémentaires
+        setInterval(() => {
+            for (let i = 0; i < 5; i++) {
+                setTimeout(() => createMeteor(), i * 20);
+            }
+        }, 2000);
+
+        // Nyan-Cat popup toutes les 4 secondes
+        function showNyanCat() {
+            const nyancat = document.createElement('img');
+            nyancat.src = 'nyan-cat.gif';
+            nyancat.style.position = 'fixed';
+            nyancat.style.zIndex = '1000';
+            nyancat.style.pointerEvents = 'none';
+            nyancat.style.width = '400px';
+            nyancat.style.height = 'auto';
+
+            // Position aléatoire
+            const randomX = Math.random() * (window.innerWidth - 400);
+            const randomY = Math.random() * (window.innerHeight - 300);
+            nyancat.style.left = randomX + 'px';
+            nyancat.style.top = randomY + 'px';
+
+            document.body.appendChild(nyancat);
+
+            // Disparaître après 0.5 secondes
+            setTimeout(() => {
+                nyancat.remove();
+            }, 500);
+        }
+
+        // Lancer Nyan-Cat toutes les 2.5 secondes
+        setInterval(showNyanCat, 2500);
     </script>
 </body>
 
