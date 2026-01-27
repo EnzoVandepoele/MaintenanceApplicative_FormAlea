@@ -147,7 +147,7 @@ if (isset($_SESSION['result'])) {
             shockwave.className = 'explosion-shockwave';
             explosion.appendChild(shockwave);
 
-            const particleCount = 36;
+            const particleCount = 16;
             const colors_exp = ['#ff0000', '#ff4500', '#ff7f00', '#ffff00', '#ffa500', '#ff6347'];
 
             for (let i = 0; i < particleCount; i++) {
@@ -171,19 +171,19 @@ if (isset($_SESSION['result'])) {
         }
 
         // Lancer une météorite toutes les 50 à 150 millisecondes - BOMBARDEMENT INTENSIF !
-        setInterval(createMeteor, 50 + Math.random() * 100);
+        setInterval(createMeteor, 800 + Math.random() * 1500);
 
         // Créer un DÉLUGE de météorites au chargement
-        for (let i = 0; i < 25; i++) {
+        for (let i = 0; i < 15; i++) {
             setTimeout(() => createMeteor(), i * 30);
         }
 
         // Bonus: créer des vagues de météorites supplémentaires
         setInterval(() => {
-            for (let i = 0; i < 5; i++) {
+            for (let i = 0; i < 2; i++) {
                 setTimeout(() => createMeteor(), i * 20);
             }
-        }, 2000);
+        }, 10000);
 
         // Nyan-Cat popup toutes les 4 secondes
         function showNyanCat() {
