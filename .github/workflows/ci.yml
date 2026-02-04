@@ -22,3 +22,6 @@ jobs:
     - run: docker compose exec -T web composer test
     - if: always()
       run: docker compose down -v
+    - name: Run PHPStan
+      run: vendor/bin/phpstan analyse src tests --level 5
+ 

@@ -11,7 +11,8 @@
         "phpunit/phpunit": "^12.5",
         "symfony/http-client": "^7.0",
         "symfony/dom-crawler": "^7.0",
-        "symfony/css-selector": "^7.0"
+        "symfony/css-selector": "^7.0",
+        "phpstan/phpstan": "^2.1"
     },
     "scripts": {
         "test": "phpunit"

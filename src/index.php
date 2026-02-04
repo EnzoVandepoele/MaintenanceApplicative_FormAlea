@@ -4,6 +4,7 @@ $host = getenv("DB_HOST") ?: "db";
 $db   = getenv("DB_NAME") ?: "app";
 $user = getenv("DB_USER") ?: "app";
 $pass = getenv("DB_PASS") ?: "apppass";
+$pdo = null;
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8mb4", $user, $pass);
 } catch (Exception $e) {
@@ -11,7 +12,7 @@ try {
 }
 
 require_once __DIR__ . '/migrate.php';
-runMigrations($pdo);
+runMigrations( $pdo);
 
 // Traiter le formulaire AVANT d'envoyer le HTML
 $result = '';
@@ -81,6 +82,7 @@ if (isset($_SESSION['result'])) {
                 <li>Léo HENRIOT</li>
                 <li>Firmin BORRACINO (le destructeur du front)</li>
                 <li>Cherifa SAFI</li>
+                <li>Amen AHOUANDOGBO</li>
             </ul>
 
             <hr>
