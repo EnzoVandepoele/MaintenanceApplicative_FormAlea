@@ -1,0 +1,19 @@
+{
+    "name": "td1/enzo",
+    "description": "TD1 Maintenance Applicative",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Enzo"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^12.5",
+        "symfony/http-client": "^8.0",
+        "symfony/dom-crawler": "^8.0",
+        "symfony/css-selector": "^8.0"
+    },
+    "scripts": {
+        "test": "phpunit"
+    }
+}
