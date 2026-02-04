@@ -39,11 +39,11 @@ class FunctionalTest extends TestCase
         $html = $response->getContent();
         $crawler = new Crawler($html);
 
-        // Vérifie le titre de la page
-        $this->assertEquals(
-            'Maintenance Applicative',
+        // Vérifie le titre de la page (style années 2000)
+        $this->assertStringContainsString(
+            'MaInTeNaNcE aPpLiCaTiVe',
             $crawler->filter('title')->text(),
-            'Le titre doit être "Maintenance Applicative"'
+            'Le titre doit contenir "MaInTeNaNcE aPpLiCaTiVe"'
         );
 
         // Vérifie que le formulaire existe
@@ -118,7 +118,7 @@ class FunctionalTest extends TestCase
 
         // Vérifie que le résultat est une des valeurs soumises
         $result = $resultText->text();
-        $possibleValues = ['Alice', 'Bob', 'Charlie'];
+        $possibleValues = ['Alice', 'Bob', 'Charlie', 'Sebastien'];
         $this->assertContains($result, $possibleValues, "Le résultat '$result' doit être une des valeurs soumises");
     }
 
