@@ -2,3 +2,4 @@ vendor/
 .*.cache
 *.log
 .env*
+migrations.json

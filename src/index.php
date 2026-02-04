@@ -83,6 +83,7 @@ if (isset($_SESSION['result'])) {
                 <li>Firmin BORRACINO (le destructeur du front)</li>
                 <li>Cherifa SAFI</li>
                 <li>Amen AHOUANDOGBO</li>
+                <li>Tom HUBERT</li>
             </ul>
 
             <hr>
