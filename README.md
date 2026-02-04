@@ -5,6 +5,8 @@
 composer install
 docker compose up -d
 ```
+puis aller sur : localhost:8080/migrate.php
+puis aller sur : localhost:8080
 
 ## Test
 ```bash
