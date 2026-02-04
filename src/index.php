@@ -80,6 +80,7 @@ if (isset($_SESSION['result'])) {
                 <li>Mathieu DUCROT (le créateur du front)</li>
                 <li>Léo HENRIOT</li>
                 <li>Firmin BORRACINO (le destructeur du front)</li>
+                <li>Cherifa SAFI</li>
             </ul>
 
             <hr>

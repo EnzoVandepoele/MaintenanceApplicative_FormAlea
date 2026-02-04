@@ -12,7 +12,7 @@ use Symfony\Component\DomCrawler\Crawler;
  */
 class FunctionalTest extends TestCase
 {
-    private const BASE_URL = 'http://localhost:8080';
+    private const BASE_URL = 'http://web';
 
     private $client;
 

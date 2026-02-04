@@ -5,7 +5,9 @@ services:
     ports:
       - "8080:80"
     volumes:
+      - .:/app
       - ./src:/var/www/html
+    working_dir: /app
     depends_on:
       - db
     environment:
@@ -25,7 +27,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "3307:3306"
 
   phpmyadmin:
     image: phpmyadmin:latest
