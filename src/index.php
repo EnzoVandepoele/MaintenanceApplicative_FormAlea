@@ -60,6 +60,7 @@ if (isset($_SESSION['result'])) {
 
 <body>
     <div class="meteorites-container" id="meteoritesContainer"></div>
+    <img src="sebastien.png" alt="Sebastien" id="sebastien">
     <div class="container">
         <div class="header">
             <h1>Maintenance Applicative</h1>

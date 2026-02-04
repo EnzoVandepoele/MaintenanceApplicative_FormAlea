@@ -8,8 +8,7 @@ body {
   font-family: Arial, sans-serif;
   background-image:
     url("dog.gif"),
-    linear-gradient(
-      45deg,
+    linear-gradient(45deg,
       #ff0000,
       #ff7f00,
       #ffff00,
@@ -17,8 +16,7 @@ body {
       #0000ff,
       #4b0082,
       #9400d3,
-      #ff0000
-    );
+      #ff0000);
   background-size:
     200px auto,
     400% 400%;
@@ -66,16 +64,14 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #4b0082,
-    #9400d3
-  );
+  background: linear-gradient(135deg,
+      #ff0000,
+      #ff7f00,
+      #ffff00,
+      #00ff00,
+      #0000ff,
+      #4b0082,
+      #9400d3);
   border-radius: 15px;
   padding: 2px;
   z-index: -1;
@@ -98,16 +94,14 @@ body {
 }
 
 .header h1 {
-  background: linear-gradient(
-    90deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #4b0082,
-    #9400d3
-  );
+  background: linear-gradient(90deg,
+      #ff0000,
+      #ff7f00,
+      #ffff00,
+      #00ff00,
+      #0000ff,
+      #4b0082,
+      #9400d3);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -159,38 +153,32 @@ input[type="text"] {
   border-radius: 8px;
   font-size: 1em;
   transition: all 0.3s ease;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 0, 0, 0.1),
-    rgba(0, 0, 255, 0.1)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 0, 0, 0.1),
+      rgba(0, 0, 255, 0.1));
 }
 
 input[type="text"]:focus {
   outline: none;
   border-color: #0000ff;
   box-shadow: 0 0 10px rgba(0, 0, 255, 0.3);
-  background: linear-gradient(
-    135deg,
-    rgba(255, 0, 0, 0.2),
-    rgba(0, 0, 255, 0.2)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 0, 0, 0.2),
+      rgba(0, 0, 255, 0.2));
 }
 
 button {
   width: 100%;
   padding: 15px;
   margin-top: 20px;
-  background: linear-gradient(
-    90deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #4b0082,
-    #9400d3
-  );
+  background: linear-gradient(90deg,
+      #ff0000,
+      #ff7f00,
+      #ffff00,
+      #00ff00,
+      #0000ff,
+      #4b0082,
+      #9400d3);
   background-size: 200% auto;
   color: white;
   border: none;
@@ -226,16 +214,14 @@ button:active {
 }
 
 .content strong {
-  background: linear-gradient(
-    90deg,
-    #ff0000,
-    #ff7f00,
-    #ffff00,
-    #00ff00,
-    #0000ff,
-    #4b0082,
-    #9400d3
-  );
+  background: linear-gradient(90deg,
+      #ff0000,
+      #ff7f00,
+      #ffff00,
+      #00ff00,
+      #0000ff,
+      #4b0082,
+      #9400d3);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -243,6 +229,7 @@ button:active {
   animation: rainbowText 3s ease infinite;
   font-weight: bold;
 }
+
 /* Météorites */
 .meteorites-container {
   position: fixed;
@@ -270,9 +257,11 @@ button:active {
     opacity: 1;
     transform: translateY(0) translateX(0);
   }
+
   80% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
     transform: translateY(100vh) translateX(100px);
@@ -300,10 +289,12 @@ button:active {
     transform: translate(0, 0) scale(1);
     filter: drop-shadow(0 0 12px currentColor) brightness(2);
   }
+
   50% {
     opacity: 0.9;
     filter: drop-shadow(0 0 8px currentColor) brightness(1.5);
   }
+
   100% {
     opacity: 0;
     transform: translate(var(--tx), var(--ty)) scale(0);
@@ -316,6 +307,7 @@ button:active {
     transform: scale(0);
     opacity: 1;
   }
+
   100% {
     transform: scale(3);
     opacity: 0;
@@ -342,4 +334,14 @@ body {
 .container {
   position: relative;
   z-index: 10;
+}
+
+
+#sebastien {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  width: 100px;
+  height: 100px;
+  z-index: 1000;
 }
