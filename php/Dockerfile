@@ -1,7 +1,10 @@
 FROM php:8.3-apache
 
 # Extensions utiles (pdo_mysql pour MySQL)
-RUN docker-php-ext-install pdo pdo_mysql
+RUN apk add --no-cache \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql zip
 
 # (Optionnel) activer mod_rewrite si tu en as besoin
 RUN a2enmod rewrite
