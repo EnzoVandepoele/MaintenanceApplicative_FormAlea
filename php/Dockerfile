@@ -6,4 +6,4 @@ RUN docker-php-ext-install pdo pdo_mysql
 # (Optionnel) activer mod_rewrite si tu en as besoin
 RUN a2enmod rewrite
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install -dir=/usr/local.bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
